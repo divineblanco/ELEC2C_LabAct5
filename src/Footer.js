@@ -3,10 +3,10 @@ function Footer({items}) {
     return (
         <div className="Footer">
             <p>
-                You have {items.length} items in your list, and you already completed
-                {completedItem}
+                You have {items.length} items in your list, and you already completed {completedItem}
             </p>
+            {""}
         </div>
-    )
+    );
 }
 export default Footer;

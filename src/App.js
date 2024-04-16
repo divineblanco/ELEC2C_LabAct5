@@ -10,7 +10,7 @@ function App() {
   const [items, setItems] = useState([]);
   const [sortBy, setSortBy] = useState("input");
 
-  let sortedItems;
+  let sortedItems = [...items];
   if (sortBy === "input") sortedItems = items;
   if (sortBy === "name") sortedItems = items.slice().sort((a,b) => a.name.localeCompare(b.name));
   if(sortBy === "checked") sortedItems = items.slice().sort((a,b) => Number(a.isChecked) - Number(b.isChecked));
@@ -20,7 +20,7 @@ function App() {
   }
 
   function handleDeleteItem(id){
-    setItems((items) => items.filter((item) => item.id !== id));
+    setItems(items => items.filter(item => item.id !== id));
   }
 
   function handleCheckedItems(id) {
@@ -29,6 +29,7 @@ function App() {
         item.id === id ? { ...item, isChecked: !item.isChecked } : item
         )
       );
+  
   } 
   
   function handleClearList(){
@@ -43,7 +44,7 @@ function App() {
       <Header/>
       <Form onAddItem={handleAddItems}/>
       <ItemList 
-        items={items}
+        items={sortedItems}
         onDeleteItem={handleDeleteItem}
         onCheckedItem={handleCheckedItems}
       />
@@ -61,3 +62,4 @@ function App() {
 }
 
 export default App;
+
